@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <style>
+    .container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); 
+        gap: 20px;
+        padding: 20px; 
+    }
+    
+    .container > div {
+        border: 1px solid #ccc;
+         background-color: whitesmoke;
+        color: #060606; 
+        padding: 15px;
+        height: auto; 
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: center;
+        border-radius: 8px; 
+        transition: transform 0.3s ease;
+        box-shadow: #0a0a0a;
+    }
+    
+    .container > div:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(215, 213, 213, 0.389); 
+    }
+    
+    img {
+        height: 150px; 
+        width: 150px; 
+        margin-bottom: 15px; 
+        margin-left: 25%;
+    }
+    
+    .container > div h3 {
+        font-size: 16px;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+    
+    .container > div p {
+        font-size: 14px;
+        color: #0a0a0a; 
+    }
+
+    .container > div button{
+        width: 50%;
+        padding: 3%;
+        margin-left: 25%;
+        background-color: #0D92F4;
+        border: 1px solid whitesmoke;
+        
+
+    }
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+
+    }
+    @media (max-width: 1200px) {
+        .container {
+            grid-template-columns: repeat(3, 1fr); 
+        }
+    }
+
+    @media (max-width: 900px) {
+        .container {
+            grid-template-columns: repeat(2, 1fr); 
+        }
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr; 
+        }
+
+        .container > div {
+            padding: 10px; 
+        }
+
+        img {
+            height: 120px; 
+            width: 120px;
+        }
+
+        .container > div h3 {
+            font-size: 14px; 
+        }
+
+        .container > div p {
+            font-size: 12px; 
+        }
+    }
+</style>
+</head>
+<body>
+
+    <div id="parent" class="container"></div>
+    
+    <script>
+       let  getdata =JSON.parse(localStorage.getItem("details"))
+       console.log(getdata)
+
+       let newgetdata=getdata.map((val)=>{
+        console.log(val)
+
+
+        parent=document.getElementById("parent")
+
+        var child=document.createElement ("div")
+          var img=document.createElement("img")
+          img.src=val.image;
+          var title=document.createElement("h3")
+          title.innerText=val.title
+
+          var category=document.createElement("p")
+          category.innerText= `Category:${val.category}`
+
+          var id=document.createElement("div")
+          id.innerText=val.id
+          var price=document.createElement("p")
+          price.innerText= `price:12.99`
+
+          
+
+          
+
+          child.append(title,id,img,category,price)
+          // console.log(child)
+          parent.append(child)
+
+       })
+
+       
+    </script>
+
+</body>
+</html>
